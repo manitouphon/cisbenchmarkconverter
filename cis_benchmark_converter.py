@@ -307,7 +307,7 @@ def write_output(
     if output_format == 'csv':
         try:
             with output_file.open(mode='w', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file, delimiter='|')
+                writer = csv.writer(file, delimiter=',')
                 writer.writerow([title if title else "CIS Benchmark Document"])
                 writer.writerow([version if version else ""])
                 writer.writerow([])  # Empty line for spacing
@@ -434,4 +434,5 @@ def main() -> None:
     write_output(recommendations, output_file, output_format, title, version)
 
 if __name__ == "__main__":
+
     main()
