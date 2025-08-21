@@ -259,6 +259,10 @@ def extract_recommendations(full_text: str) -> List[Dict[str, str]]:
                        and not TITLE_PATTERN.match(lines[current_index + 1].strip())):
                     current_index += 1
                     current_recommendation['Title'] += " " + lines[current_index].strip()
+                
+                # Clean "\ (.*)"
+                current_recommendation['Title'] = re.sub(r'\s*\(.*\)', '', current_recommendation['Title'])
+                print(current_recommendation['Title'])  
 
         # Extract standard sections (Profile Applicability, Description, etc.)
         for sec in SECTIONS_WITHOUT_CIS:
@@ -436,3 +440,4 @@ def main() -> None:
 if __name__ == "__main__":
 
     main()
+
